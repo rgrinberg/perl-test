@@ -58,7 +58,6 @@ sub get_all {
     [ map { 
         my $contractor = $self->new(db => $self->db);
         $contractor->populate($_);
-        $contractor;
     } @$all ];
 }
 

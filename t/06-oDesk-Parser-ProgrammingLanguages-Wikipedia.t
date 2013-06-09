@@ -721,7 +721,7 @@ use_ok($class);
   
   my $aref = $parser->get_anagrams;
 
-  is_deeply($aref, $expected_anagrams, 'get_anagrams');
+  is_deeply([sort @$aref ], [sort $expected_anagrams ], 'get_anagrams');
 }
 
 done_testing();

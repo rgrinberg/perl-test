@@ -714,7 +714,6 @@ use_ok($class);
   is_deeply(\@array, $expected_data, 'get_data - list context');
 }
 
-=pod
 # BONUS POINTS - get_anagrams
 # if you want to write this method, uncomment this test case
 {
@@ -724,6 +723,5 @@ use_ok($class);
 
   is_deeply($aref, $expected_anagrams, 'get_anagrams');
 }
-=cut
 
 done_testing();

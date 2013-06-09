@@ -72,14 +72,16 @@ sub get_skills {
 
 sub add_skill {
     my ($self, $skill_id) = @_;
-    # TODO check for duplicate?
-    push @{$self->skills}, $skill_id;
+    $self->db->dbh->do(
+        'insert into contractor_skill(contractor_id, skill_id) values(?,?)',
+        undef, $self->id, $skill_id);
 }
 
 sub delete_skill {
     my ($self, $skill_id) = @_;
-    $self->skills = grep { $_ != $skill_id } @{$self->skills};
-    # TODO check if skill_id doesn't exist?
+    $self->db->dbh->do(
+        'delete from contractor_skill where contractor_id=? and skill_id=?',
+        undef, $self->id, $skill_id);
 }
 
 sub get_common_skills {

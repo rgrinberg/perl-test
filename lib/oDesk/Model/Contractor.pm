@@ -14,6 +14,15 @@ has skills      => ( is => 'rw', isa => 'Array[Int]' );
 
 sub create {
     my $self = shift;
+    my %contractor = @_;
+    my $sth = $self->db->dbh->prepare('
+        insert into contractor(country_id, first_name, last_name, hourly_rate)
+        values(?,?,?,?)'
+    );
+    $sth->execute($contractor{country_id}, $contractor{first_name},
+        $contractor{last_name}, $contractor{country_id});
+    $self->load($self->db->dbh->last_insert_id());
+    return $self->id;
 }
 
 sub update {

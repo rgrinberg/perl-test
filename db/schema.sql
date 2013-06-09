@@ -3,6 +3,8 @@
 * This table is already populated
 */
 
+PRAGMA foreign_keys = ON;
+
 create table country (
 	id integer PRIMARY KEY,
 	name varchar not null unique

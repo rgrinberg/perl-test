@@ -38,7 +38,7 @@ sub get_data {
     my $ua = LWP::UserAgent->new;
     my $tree = HTML::TreeBuilder::XPath->new;
     my $content = $ua->get($self->url)->decoded_content;
-    $tree->parse($content);
+    $tree->parse_content($content);
     my @langs = $tree->findvalues('//table[@class="multicol"]//ul/li/a[1]');
     $tree->delete;
     return @langs if wantarray();

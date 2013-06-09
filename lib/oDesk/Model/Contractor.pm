@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-package oDesk::Model::Skill;
+package oDesk::Model::Contractor;
 use Moose;
 use namespace::autoclean;
 

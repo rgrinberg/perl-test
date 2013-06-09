@@ -52,6 +52,7 @@ sub get_all {
 
 sub get_skills {
     my $self = shift;
+    return $self->skills;
 }
 
 sub add_skill {

@@ -27,6 +27,13 @@ sub create {
 
 sub update {
     my $self = shift;
+    $self->db->dbh->do(
+        'update contractor
+        set country_id=?, first_name=?, last_name=?, hourly_rate=?
+        where id=?',
+        undef, $self->country_id, $self->first_name, $self->last_name,
+        $self->hourly_rate, $self->id,
+    );
 }
 
 sub populate {

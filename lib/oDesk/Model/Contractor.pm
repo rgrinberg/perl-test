@@ -29,15 +29,22 @@ sub update {
     my $self = shift;
 }
 
-sub load {
-    my ($self, $id) = @_;
-    my $contractor = $self->dbh->selectrow_hashref('
-        select * from contractor where id=?', undef, $id);
+sub populate {
+    my ($self, $contractor, $skills) = @_;
     $self->id($contractor->{id});
     $self->first_name($contractor->{first_name});
     $self->last_name($contractor->{last_name});
     $self->country_id($contractor->{country_id});
     $self->hourly_rate($contractor->{hourly_rate});
+    $self->skills($skills);
+    return $self;
+}
+
+sub load {
+    my ($self, $id) = @_;
+    my $contractor = $self->dbh->selectrow_hashref('
+        select * from contractor where id=?', undef, $id);
+    $self->populate($contractor, undef);
     return $self;
 }
 

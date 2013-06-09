@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package oDesk::Parser::ProgrammingLanguages::Wikipedia;
-use Math::Prime::TiedArray;
+use Math::Prime::TiedArray; # extremely lazy, I know...
 use HTML::TreeBuilder::XPath;
 use LWP::UserAgent;
 use Moose;
@@ -13,6 +13,12 @@ has url => (
         'http://en.wikipedia.org/wiki/List_of_programming_languages'
     },
 );
+
+# designate a unique prime number to every ascii character (techincally
+# only the first 0..127 are designated as ascii characters so I over do it a
+# little here). Also it would actually be better to assign a prime to every
+# unicode character instead (lazily of course) but it doesn't seem to be 
+# worth the effort for this toy
 
 has char_encoding => (
     is => 'ro',

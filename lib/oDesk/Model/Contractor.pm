@@ -42,7 +42,7 @@ sub load {
     my ($self, $id) = @_;
     my $contractor = $self->dbh->selectrow_hashref('
         select * from contractor where id=?', undef, $id);
-    $self->populate($contractor, undef);
+    $self->populate($contractor);
     return $self;
 }
 
@@ -53,6 +53,13 @@ sub delete {
 
 sub get_all {
     my $self = shift;
+    my $all = $self->db->dbh->selectall_arrayref('select * from contractor',
+        { Slice => {} });
+    [ map { 
+        my $contractor = $self->new(db => $self->db);
+        $contractor->populate($_);
+        $contractor;
+    } @$all ];
 }
 
 sub get_skills {

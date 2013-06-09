@@ -40,7 +40,7 @@ sub populate {
 
 sub load {
     my ($self, $id) = @_;
-    my $contractor = $self->dbh->selectrow_hashref('
+    my $contractor = $self->db->dbh->selectrow_hashref('
         select * from contractor where id=?', undef, $id);
     $self->populate($contractor);
     return $self;

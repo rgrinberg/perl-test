@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 package oDesk::Parser::ProgrammingLanguages::Wikipedia;
-use utf8;
 use Math::Prime::TiedArray;
 use HTML::TreeBuilder::XPath;
 use LWP::UserAgent;

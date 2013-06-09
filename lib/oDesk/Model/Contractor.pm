@@ -31,6 +31,14 @@ sub update {
 
 sub load {
     my ($self, $id) = @_;
+    my $contractor = $self->dbh->selectrow_hashref('
+        select * from contractor where id=?', undef, $id);
+    $self->id($contractor->{id});
+    $self->first_name($contractor->{first_name});
+    $self->last_name($contractor->{last_name});
+    $self->country_id($contractor->{country_id});
+    $self->hourly_rate($contractor->{hourly_rate});
+    return $self;
 }
 
 sub delete {

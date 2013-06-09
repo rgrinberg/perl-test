@@ -64,6 +64,10 @@ sub get_all {
 
 sub get_skills {
     my $self = shift;
+    return @{$self->db->dbh->selectcol_arrayref(
+    'select skill_id from contractor_skill where contractor_id=?',
+    undef, $self->id
+    )};
 }
 
 sub add_skill {

@@ -9,4 +9,8 @@ newdb:
 	sqlite3 ./db/odesk.db < ./db/schema.sql
 	sqlite3 ./db/odesk.db < ./db/data.sql
 
-.PHONY: newdb schema
+tests:
+	make newdb
+	dzil build
+
+.PHONY: newdb schema tests

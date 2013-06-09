@@ -35,6 +35,7 @@ sub load {
 
 sub delete {
     my ($self, $id) = @_;
+    $self->db->dbh->do('delete from contractor where id=?', undef, $id);
 }
 
 sub get_all {

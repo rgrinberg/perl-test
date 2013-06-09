@@ -86,13 +86,13 @@ sub delete_skill {
 
 sub get_common_skills {
     my ($self, $c1, $c2) = @_;
-    # TODO return an array of the skills ids common to both contractors
-    return ()
+    @{$self->db->dbh->selectcol_arrayref('
+        select skill_id from contractor_skill where contractor_id=?
+        intersect
+        select skill_id from contractor_skill where contractor_id=?',
+        undef, $c1->id, $c2->id)
+    };
 }
-
-
-
-
 
 __PACKAGE__->meta->make_immutable;
 1;

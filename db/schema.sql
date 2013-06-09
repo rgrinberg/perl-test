@@ -33,8 +33,8 @@ create table contractor (
 create table contractor_skill (
     contractor_id integer not null,
     skill_id integer not null,
-    foreign key(contractor_id) references contractor(id),
-    foreign key(skill_id) references skill(id),
+    foreign key(contractor_id) references contractor(id) on delete cascade,
+    foreign key(skill_id) references skill(id) on delete cascade,
     PRIMARY KEY(contractor_id, skill_id)
 );
 

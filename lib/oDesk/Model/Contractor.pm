@@ -64,10 +64,10 @@ sub get_all {
     my $self = shift;
     my $all = $self->db->dbh->selectall_arrayref('select * from contractor',
         { Slice => {} });
-    [ map { 
+    map { 
         my $contractor = $self->new(db => $self->db);
         $contractor->populate($_);
-    } @$all ];
+    } @$all;
 }
 
 sub get_skills {

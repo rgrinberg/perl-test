@@ -10,7 +10,6 @@ has first_name  => ( is => 'rw' );
 has last_name   => ( is => 'rw' );
 has hourly_rate => ( is => 'rw' );
 has country_id  => ( is => 'rw', isa => 'Int' );
-has skills      => ( is => 'rw', isa => 'Array[Int]' );
 
 sub create {
     my $self = shift;
@@ -30,13 +29,12 @@ sub update {
 }
 
 sub populate {
-    my ($self, $contractor, $skills) = @_;
+    my ($self, $contractor) = @_;
     $self->id($contractor->{id});
     $self->first_name($contractor->{first_name});
     $self->last_name($contractor->{last_name});
     $self->country_id($contractor->{country_id});
     $self->hourly_rate($contractor->{hourly_rate});
-    $self->skills($skills);
     return $self;
 }
 
@@ -59,7 +57,6 @@ sub get_all {
 
 sub get_skills {
     my $self = shift;
-    return $self->skills;
 }
 
 sub add_skill {

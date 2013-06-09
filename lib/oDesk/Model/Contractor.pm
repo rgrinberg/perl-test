@@ -48,6 +48,7 @@ sub load {
 
 sub delete {
     my ($self, $id) = @_;
+    printf "deleting $id\n";
     $self->db->dbh->do('delete from contractor where id=?', undef, $id);
 }
 

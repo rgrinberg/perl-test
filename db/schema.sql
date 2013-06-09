@@ -17,3 +17,23 @@ create table skill (
 	id integer PRIMARY KEY,
 	name varchar not null unique
 );
+
+create table contractor (
+    id integer PRIMARY KEY,
+    country_id integer not null,
+    first_name varchar not null,
+    last_name varchar not null,
+    hourly_rate decimal not null,
+    foreign key(country_id) references country(id)
+);
+
+
+create table contractor_skill (
+    contractor_id integer not null,
+    skill_id integer not null,
+    foreign key(contractor_id) references contractor(id),
+    foreign key(skill_id) references skill(id),
+    PRIMARY KEY(contractor_id, skill_id)
+);
+
+-- TODO create indices on foreign keys

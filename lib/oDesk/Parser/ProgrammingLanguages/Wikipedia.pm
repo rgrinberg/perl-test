@@ -81,3 +81,43 @@ sub get_anagrams {
 
 __PACKAGE__->meta->make_immutable;
 1;
+
+
+=pod
+
+=head1 NAME
+
+oDesk::Parser::ProgrammingLanguages::Wikipedia
+
+=head1 SYNOPSIS
+
+  use oDesk::DB;
+  use ODesk::Model::Country;
+
+  my $parser = $oDesk::Parser::ProgrammingLanguages::Wikipedia->new;
+
+  # will return all programming languages from wikipedia
+  my @langs = $parser->get_data;
+
+=head1 INTRODUCTION
+
+class that fetches programming languages from a url (wikipedia by default)
+
+=head1 METHODS
+
+=head2 get_data 
+
+$parser->get_data() returns a list of all programming languages fetched
+from $parser->url() in list context. In scalar context it returns a reference
+to that same list
+
+=head2 get_anagrams 
+
+$parser->get_anagrams returns a list of all programming languages fetched
+from $parser->url() that are anagrams.
+
+=head1 AUTHOR
+
+Rudi Grinberg <rudi.grinberg@gmail.com>
+
+=cut

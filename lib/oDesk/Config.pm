@@ -38,7 +38,7 @@ __END__
 
 =head1 NAME
 
-oDesk::Confg
+oDesk::Config
 
 =head1 SYNOPSIS
 

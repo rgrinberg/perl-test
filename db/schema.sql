@@ -37,5 +37,3 @@ create table contractor_skill (
     foreign key(skill_id) references skill(id) on delete cascade,
     PRIMARY KEY(contractor_id, skill_id)
 );
-
--- TODO create indices on foreign keys

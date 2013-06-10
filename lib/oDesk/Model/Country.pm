@@ -42,3 +42,52 @@ sub get_id_for_name {
 
 __PACKAGE__->meta->make_immutable;
 1;
+=pod
+
+=head1 NAME
+
+oDesk::Model::Country
+
+=head1 SYNOPSIS
+
+  use oDesk::DB;
+  use ODesk::Model::Country;
+
+  my $db = oDesk::DB->new;
+  my $model = oDesk::Model::Country->new(db => $db);
+  # print all the country names
+  foreach my $country ($model->get_country_names) {
+    print "Country: $country\n";
+  }
+
+=head1 INTRODUCTION
+
+class representing the models for countries
+
+=head1 METHODS
+
+=head2 get_all_hashref 
+
+returns a hashref that maps all the country id's in the database to their
+respective country names
+
+=head2 get_country_names 
+
+Returns an arrayref to all the country names in scalar context. Just
+returns the array in array context
+
+=head2 get_name_for_id 
+
+$c->get_name_for_id($id) returns the name of the country corresponding
+to id:$id
+
+=head2 get_id_for_name 
+
+$c->get_id_for_name($id) returns the id of the country corresponding
+to name: $name
+
+=head1 AUTHOR
+
+Rudi Grinberg <rudi.grinberg@gmail.com>
+
+=cut

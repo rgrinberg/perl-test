@@ -4,9 +4,12 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 
+use Encode;
 use Test::More;
 use Test::Exception;
 use Data::Dumper;
+use Mock::Quick;
+use File::Slurp;
 
 my $class = 'oDesk::Parser::ProgrammingLanguages::Wikipedia';
 my $default_url = 'http://en.wikipedia.org/wiki/List_of_programming_languages';
@@ -716,9 +719,20 @@ use_ok($class);
   cmp_ok($parser->url, 'eq', $google_url, 'passed url attribute');
 }
 
+my $ua_mock = qobj(
+    get => qmeth {
+        return qobj(
+            decoded_content => qmeth {
+                decode('utf8',
+                    read_file("$FindBin::Bin/List_of_programming_languages")
+                );
+            }
+        );
+    }
+);
 
 {
-  my $parser = $class->new;
+  my $parser = $class->new(user_agent => $ua_mock);
 
   my $aref = $parser->get_data;
   cmp_ok(ref $aref, 'eq', 'ARRAY', 'get_data - scalar context');
@@ -730,7 +744,7 @@ use_ok($class);
 # BONUS POINTS - get_anagrams
 # if you want to write this method, uncomment this test case
 {
-  my $parser = $class->new;
+  my $parser = $class->new(user_agent => $ua_mock);
   
   my $aref = $parser->get_anagrams;
 

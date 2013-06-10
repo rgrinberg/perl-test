@@ -14,6 +14,11 @@ has url => (
     },
 );
 
+has user_agent => (
+    is => 'ro',
+    default => sub { LWP::UserAgent->new; }
+);
+
 has primes => (
     is => 'ro',
     default => sub {
@@ -25,9 +30,8 @@ has primes => (
 
 sub get_data {
     my $self = shift;
-    my $ua = LWP::UserAgent->new;
     my $tree = HTML::TreeBuilder::XPath->new;
-    my $content = $ua->get($self->url)->decoded_content;
+    my $content = $self->user_agent->get($self->url)->decoded_content;
     $tree->parse_content($content);
     my @langs = $tree->findvalues('//table[@class="multicol"]//ul/li/a[1]');
     $tree->delete;

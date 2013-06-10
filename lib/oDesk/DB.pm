@@ -26,3 +26,36 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 
+=pod
+
+=head1 NAME
+
+oDesk::DB
+
+=head1 SYNOPSIS
+
+  use oDesk::DB;
+  # creates a db instance
+  my $db = oDesk::DB->new;
+  # since $db is a singleton
+  my $db2 = oDesk::DB->new;
+  # this means that $db and $db2 are exactly the same
+
+=head1 INTRODUCTION
+
+Singleton that encapsulates the dbi connection to the database in the dbh
+field
+
+=head1 METHODS
+
+=head2 dbh
+
+  my $dbh = $db->$dbh;
+
+returns the DBI connection handle to the database
+
+=head1 AUTHOR
+
+Rudi Grinberg <rudi.grinberg@gmail.com>
+
+=cut
